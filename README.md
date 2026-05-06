@@ -8,6 +8,7 @@ The Secure Audit System is a web application designed to provide encryption and 
 - **Encryption Services**: Utilizes a centralized encryption service to secure sensitive data.
 - **Immutable Logging**: Ensures that all log records are stored immutably, preventing unauthorized modifications.
 - **Audit Trail**: Maintains a comprehensive audit trail of all API interactions for accountability and traceability.
+- **Web Interface**: Provides a simple web page for easy access and testing of the encryption functionality.
 
 ## Requirements
 - Functional requirements are detailed in the `docs/REQUIREMENTS.md` file.
@@ -19,7 +20,7 @@ User stories describing the functionality from the user's perspective can be fou
 ## Installation
 1. Clone the repository:
    ```
-   git clone <repository-url>
+   git clone https://github.com/jorgealveardia-netizen/PARCIAL-ING-SOFTWARE.git
    ```
 2. Navigate to the project directory:
    ```
@@ -36,7 +37,10 @@ To start the application, run:
 ```
 npm start
 ```
-The server will initialize and listen for incoming API requests.
+The server will initialize and listen for incoming API requests on port 3000.
+
+### Web Interface
+Once the server is running, open your browser and navigate to `http://localhost:3000` to access the web interface. You can use the form to encrypt data and see the results directly in the browser.
 
 ## Contributing
 Contributions are welcome! Please submit a pull request or open an issue for any enhancements or bug fixes.
