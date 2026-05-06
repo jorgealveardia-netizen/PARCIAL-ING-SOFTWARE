@@ -1,5 +1,5 @@
 import crypto from 'crypto';
-import { config } from '../config';
+import config from '../config';
 import { Record } from '../models/record';
 
 export class EncryptionService {
