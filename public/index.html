@@ -5,25 +5,108 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Auditoría Segura</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        form { margin-bottom: 20px; }
-        input, button { padding: 10px; margin: 5px; }
-        #response { margin-top: 20px; padding: 10px; border: 1px solid #ccc; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+        h1 {
+            color: #4a5568;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        form {
+            margin-bottom: 30px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #2d3748;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+            box-sizing: border-box;
+        }
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin-top: 15px;
+        }
+        button:hover {
+            transform: translateY(-2px);
+        }
+        #response {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            white-space: pre-wrap;
+            text-align: left;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        .error {
+            background: #fed7d7;
+            border-color: #fc8181;
+            color: #c53030;
+        }
+        .success {
+            background: #c6f6d5;
+            border-color: #68d391;
+            color: #22543d;
+        }
     </style>
 </head>
 <body>
-    <h1>Sistema de Auditoría Segura</h1>
-    <form id="encryptForm">
-        <label for="data">Datos a encriptar:</label><br>
-        <input type="text" id="data" name="data" required><br>
-        <button type="submit">Encriptar</button>
-    </form>
-    <div id="response"></div>
+    <div class="container">
+        <h1>Sistema de Auditoría Segura</h1>
+        <form id="encryptForm">
+            <label for="data">Datos a encriptar:</label>
+            <input type="text" id="data" name="data" required placeholder="Ingresa los datos aquí">
+            <button type="submit">Encriptar</button>
+        </form>
+        <div id="response"></div>
+    </div>
 
     <script>
         document.getElementById('encryptForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const data = document.getElementById('data').value;
+            const responseDiv = document.getElementById('response');
+            responseDiv.className = '';
+            responseDiv.innerText = 'Encriptando...';
             try {
                 const response = await fetch('/api/encrypt', {
                     method: 'POST',
@@ -31,9 +114,16 @@
                     body: JSON.stringify({ data })
                 });
                 const result = await response.json();
-                document.getElementById('response').innerText = JSON.stringify(result, null, 2);
+                if (response.ok) {
+                    responseDiv.className = 'success';
+                    responseDiv.innerText = 'Resultado encriptado:\n' + JSON.stringify(result, null, 2);
+                } else {
+                    responseDiv.className = 'error';
+                    responseDiv.innerText = 'Error: ' + (result.error || 'Error desconocido');
+                }
             } catch (error) {
-                document.getElementById('response').innerText = 'Error: ' + error.message;
+                responseDiv.className = 'error';
+                responseDiv.innerText = 'Error: ' + error.message;
             }
         });
     </script>
