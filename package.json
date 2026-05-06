@@ -1,0 +1,32 @@
+{
+  "name": "secure-audit-system",
+  "version": "1.0.0",
+  "description": "A web system for encryption and auditing with middleware for request interception and logging.",
+  "main": "src/server.ts",
+  "scripts": {
+    "start": "ts-node src/server.ts",
+    "test": "jest"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "crypto": "^1.0.1",
+    "jsonwebtoken": "^8.5.1",
+    "dotenv": "^10.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.5.4",
+    "ts-node": "^10.4.0",
+    "jest": "^27.0.6",
+    "@types/jest": "^27.0.2",
+    "@types/node": "^16.11.7",
+    "@types/express": "^4.17.13"
+  },
+  "keywords": [
+    "encryption",
+    "auditing",
+    "middleware",
+    "logging"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}
