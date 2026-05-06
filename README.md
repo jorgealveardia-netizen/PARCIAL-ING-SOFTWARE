@@ -40,7 +40,7 @@ npm start
 The server will initialize and listen for incoming API requests on port 3000.
 
 ### Web Interface
-Once the server is running, open your browser and navigate to `http://localhost:3000` to access the web interface. You can use the form to encrypt data and see the results directly in the browser.
+Once the server is running, open your browser and navigate to `http://localhost:3000` to access the web interface. You can use the form to encrypt data and see the results directly in the browser. The interface features a modern design with a gradient background, centered layout, and responsive styling for an improved user experience.
 
 ## Contributing
 Contributions are welcome! Please submit a pull request or open an issue for any enhancements or bug fixes.
