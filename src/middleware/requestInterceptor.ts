@@ -6,8 +6,13 @@ const encryptionService = new EncryptionService();
 const auditService = new AuditService();
 
 export const requestInterceptor = (req: Request, res: Response, next: NextFunction) => {
+    // Skip interception for API routes
+    if (req.path.startsWith('/api')) {
+        return next();
+    }
+
     // Encrypt the request body
-    const encryptedBody = encryptionService.encrypt(req.body);
+    const encryptedBody = encryptionService.encrypt(JSON.stringify(req.body));
     req.body = encryptedBody;
 
     // Log the request details
